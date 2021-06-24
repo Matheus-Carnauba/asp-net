@@ -1,0 +1,70 @@
+﻿@page "/"
+@namespace Sistec.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistec</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="Sistec.styles.css" rel="stylesheet" />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+
+    <script>
+        function ShowTab(IdReferencia) {
+            $('#' + IdReferencia).click()
+        }
+
+        function ShowModal(IdReferencia) {
+            $('#' + IdReferencia).modal('show')
+        }
+
+        function HideModal(IdReferencia) {
+            $('#' + IdReferencia).modal('hide')
+        }
+
+        function LoadPage()
+        {
+            $('.cpf').mask('000.000.000-00', {reverse: true});
+            
+            var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+            $('.telefone').mask(SPMaskBehavior, spOptions);
+
+        }
+    </script>
+
+</body>
+</html>

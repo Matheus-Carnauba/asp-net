@@ -1,0 +1,23 @@
+@page "/counter"
+
+<h1>Counter</h1>
+
+
+
+<input type="number" @bind="Valor1" class="form-control" style="width: 80px;" >
+<input type="number" @bind="Valor2" class="form-control" style="width: 80px;"  >
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private int Valor1=0;
+    private int Valor2=0;
+    private void IncrementCount()
+    {
+        currentCount = Valor1 + Valor2;
+    }
+}
